@@ -17,15 +17,17 @@ try:
 except ImportError:
     causal_conv1d_fn, causal_conv1d_update = None
 
-try:
-    from mamba_ssm.ops.triton.selective_state_update import selective_state_update
-except ImportError:
-    selective_state_update = None
+from mamba_ssm.ops.triton.selective_state_update import selective_state_update_ref as selective_state_update
+#try:
+#    from mamba_ssm.ops.triton.selective_state_update import selective_state_update
+#except ImportError:
+#    selective_state_update = None
 
-try:
-    from mamba_ssm.ops.triton.layernorm import RMSNorm, layer_norm_fn, rms_norm_fn
-except ImportError:
-    RMSNorm, layer_norm_fn, rms_norm_fn = None, None, None
+from mamba_ssm.ops.triton.layernorm import RMSNorm, layer_norm_ref as layer_norm_fn, rms_norm_ref as rms_norm_fn
+#try:
+#    from mamba_ssm.ops.triton.layernorm import RMSNorm, layer_norm_fn, rms_norm_fn
+#except ImportError:
+#    RMSNorm, layer_norm_fn, rms_norm_fn = None, None, None
 
 
 class Mamba(nn.Module):
